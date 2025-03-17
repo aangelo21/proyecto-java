@@ -45,7 +45,7 @@ public class Formulario extends JFrame {
 
     JPanel panel = new JPanel();
 
-    //Añadimos todo a la ventana
+    //Añadimos los componentes a la ventana
     panel.add(etiquetaNombre);
     panel.add(textoNombre);
     panel.add(etiquetaApellidos);
