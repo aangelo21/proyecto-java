@@ -43,6 +43,13 @@ public class Formulario extends JFrame {
     JLabel etiquetaPassword = new JLabel("Introduce tu contraseña");
     JTextField textoPassword = new JTextField(25);
 
+    //Botones
+    JButton botonEnviar = new JButton("Enviar"); //Boton enviar
+    JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
+    JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
+    JButton botonEasterEgg = new JButton("?"); //Boton easter egg
+
+    //Creamos el panel
     JPanel panel = new JPanel();
 
     //Añadimos los componentes a la ventana
@@ -58,10 +65,15 @@ public class Formulario extends JFrame {
     panel.add(textoCorreo);
     panel.add(etiquetaPassword);
     panel.add(textoPassword);
+    panel.add(botonEnviar);
+    panel.add(botonLimpiar);
+    panel.add(botonCancelar);
+    panel.add(botonEasterEgg);
     setContentPane(panel);
     setVisible(true);
   }
 
+  //Metodo main para que se pueda mostrar la ventana
   public static void main(String[] args) {
     new Formulario();
   }
