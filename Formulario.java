@@ -1,6 +1,8 @@
 // Importamos las utilidades
 
 import javax.swing.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class Formulario extends JFrame {
 
@@ -48,6 +50,19 @@ public class Formulario extends JFrame {
     JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
     JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
     JButton botonEasterEgg = new JButton("?"); //Boton easter egg
+
+    // Eventos
+    botonLimpiar.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        textoNombre.setText("");
+        textoApellidos.setText("");
+        textoDNI.setText("");
+        textoTelefono.setText("");
+        textoCorreo.setText("");
+        textoPassword.setText("");
+      }
+    });
 
     //Creamos el panel
     JPanel panel = new JPanel();
