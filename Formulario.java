@@ -52,6 +52,8 @@ public class Formulario extends JFrame {
     JButton botonEasterEgg = new JButton("?"); //Boton easter egg
 
     // Eventos
+
+    //Evento para limpiar textos
     botonLimpiar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
