@@ -75,9 +75,18 @@ public class Formulario extends JFrame {
             escribir.write(textoPassword.getText());
             escribir.newLine();
             escribir.close();
+            textoNombre.setText("");
+            textoApellidos.setText("");
+            textoDNI.setText("");
+            textoTelefono.setText("");
+            textoCorreo.setText("");
+            textoPassword.setText("");
+            mostrarVentanaConfirmacionEnviar();
           } catch (IOException ex) {
             System.out.println("Error de escribir");
           }
+        } else {
+          mostrarVentanaErrorEnviar();
         }
       }
     });
@@ -99,7 +108,7 @@ public class Formulario extends JFrame {
     botonCancelar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
-
+        mostrarVentanaConfirmacionCancelar();
       }
     });
 
@@ -141,6 +150,78 @@ public class Formulario extends JFrame {
 
     setContentPane(panel);
     setVisible(true);
+  }
+
+  //Metodo para mostrar ventana de confirmacion al salir del formulario
+  private void mostrarVentanaConfirmacionCancelar() {
+    // Crear una nueva ventana para confirmar si el usuario quiere salir
+    JDialog confirmacionDialog = new JDialog(this, "¿Seguro que desea salir?", true);
+    confirmacionDialog.setSize(300, 150);
+    confirmacionDialog.setLayout(new FlowLayout());
+
+    // Crear los botones "Aceptar" y "Cancelar"
+    JButton aceptarButton = new JButton("Aceptar");
+    JButton cancelarButton = new JButton("Cancelar");
+
+    // Acción al hacer clic en "Aceptar"
+    aceptarButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        System.exit(0); // Cerrar la aplicación
+      }
+    });
+
+    // Acción al hacer clic en "Cancelar"
+    cancelarButton.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        confirmacionDialog.dispose(); // Cerrar la ventana de confirmación
+      }
+    });
+
+    // Añadir los botones al diálogo
+    confirmacionDialog.add(aceptarButton);
+    confirmacionDialog.add(cancelarButton);
+
+    // Hacer visible la ventana de confirmación
+    confirmacionDialog.setLocationRelativeTo(this); // Centrar la ventana en la principal
+    confirmacionDialog.setVisible(true);
+  }
+
+  //Metodo para mostrar ventana de confirmacion al enviar los datos del formulario
+  private void mostrarVentanaConfirmacionEnviar() {
+    // Crear una nueva ventana para mostrar que los datos se han añadido correctamente
+    JDialog confirmacionDialogAgregar = new JDialog(this, "Añadir datos", true);
+    confirmacionDialogAgregar.setSize(200, 150);
+    confirmacionDialogAgregar.setLayout(new FlowLayout());
+
+    //Crear etiqueta de informacion
+    JLabel confirmacionDatos = new JLabel("Datos correctamente añadidos");
+
+    // Añadir los botones al diálogo
+    confirmacionDialogAgregar.add(confirmacionDatos);
+
+    // Hacer visible la ventana de confirmación
+    confirmacionDialogAgregar.setLocationRelativeTo(this); // Centrar la ventana en la principal
+    confirmacionDialogAgregar.setVisible(true);
+  }
+
+  //Metodo para mostrar ventana de confirmacion al enviar los datos del formulario
+  private void mostrarVentanaErrorEnviar() {
+    // Crear una nueva ventana para mostrar que los datos se han añadido correctamente
+    JDialog errorDialogAgregar = new JDialog(this, "Error datos", true);
+    errorDialogAgregar.setSize(200, 150);
+    errorDialogAgregar.setLayout(new FlowLayout());
+
+    //Crear etiqueta de informacion
+    JLabel confirmacionDatos = new JLabel("Complete el formulario");
+
+    // Añadir los botones al diálogo
+    errorDialogAgregar.add(confirmacionDatos);
+
+    // Hacer visible la ventana de confirmación
+    errorDialogAgregar.setLocationRelativeTo(this); // Centrar la ventana en la principal
+    errorDialogAgregar.setVisible(true);
   }
 
   //Metodo main para que se pueda mostrar la ventana
