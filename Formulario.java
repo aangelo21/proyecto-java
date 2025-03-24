@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.*;
 
 public class Formulario extends JFrame {
 
@@ -54,6 +55,33 @@ public class Formulario extends JFrame {
 
     // Eventos
 
+    //Evento para guardar datos
+    botonEnviar.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        if (textoTelefono.getText().length() == 9 && textoPassword.getText().length() >= 9 && textoCorreo.getText().contains("@")) {
+          try {
+            BufferedWriter escribir = new BufferedWriter(new FileWriter("datos.txt", true));
+            escribir.write(textoNombre.getText());
+            escribir.newLine();
+            escribir.write(textoApellidos.getText());
+            escribir.newLine();
+            escribir.write(textoDNI.getText());
+            escribir.newLine();
+            escribir.write(textoTelefono.getText());
+            escribir.newLine();
+            escribir.write(textoCorreo.getText());
+            escribir.newLine();
+            escribir.write(textoPassword.getText());
+            escribir.newLine();
+            escribir.close();
+          } catch (IOException ex) {
+            System.out.println("Error de escribir");
+          }
+        }
+      }
+    });
+
     //Evento para limpiar textos
     botonLimpiar.addActionListener(new ActionListener() {
       @Override
@@ -67,13 +95,21 @@ public class Formulario extends JFrame {
       }
     });
 
+    //Evento para salir del formulario
+    botonCancelar.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+
+      }
+    });
+
     //Creamos el panel
     JPanel panel = new JPanel(new BorderLayout(10, 10));
-    
+
     // Panel para los campos del formulario
     JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
     formPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Reducimos el padding vertical
-    
+
     // Añadimos los componentes al panel del formulario
     formPanel.add(etiquetaNombre);
     formPanel.add(textoNombre);
@@ -87,11 +123,12 @@ public class Formulario extends JFrame {
     formPanel.add(textoCorreo);
     formPanel.add(etiquetaPassword);
     formPanel.add(textoPassword);
+    formPanel.add(botonEnviar);
 
     // Panel para los botones
     JPanel botonesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-    botonesPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Reducimos el padding vertical
-    
+    botonesPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+
     // Añadimos los botones al panel de botones
     botonesPanel.add(botonEnviar);
     botonesPanel.add(botonLimpiar);
