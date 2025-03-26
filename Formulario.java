@@ -51,7 +51,6 @@ public class Formulario extends JFrame {
     JButton botonEnviar = new JButton("Enviar"); //Boton enviar
     JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
     JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
-    JButton botonEasterEgg = new JButton("?"); //Boton easter egg
 
     // Eventos
 
@@ -81,12 +80,20 @@ public class Formulario extends JFrame {
             textoTelefono.setText("");
             textoCorreo.setText("");
             textoPassword.setText("");
-            mostrarVentanaConfirmacionEnviar();
+            mostrarMensaje("Datos enviados correctamente", "Éxito");
           } catch (IOException ex) {
-            System.out.println("Error de escribir");
+            mostrarMensaje("Error al escribir los datos", "Error");
           }
         } else {
-          mostrarVentanaErrorEnviar();
+          if (textoTelefono.getText().length() != 9) {
+            mostrarMensaje("El teléfono debe tener 9 dígitos", "Error");
+          }
+          if (textoPassword.getText().length() < 9) {
+            mostrarMensaje("La contraseña debe tener al menos 9 caracteres", "Error");
+          }
+          if (!textoCorreo.getText().contains("@")) {
+            mostrarMensaje("El correo electrónico debe contener '@'", "Error");
+          }
         }
       }
     });
@@ -142,7 +149,6 @@ public class Formulario extends JFrame {
     botonesPanel.add(botonEnviar);
     botonesPanel.add(botonLimpiar);
     botonesPanel.add(botonCancelar);
-    botonesPanel.add(botonEasterEgg);
 
     // Añadimos los paneles al panel principal
     panel.add(formPanel, BorderLayout.CENTER);
@@ -152,7 +158,9 @@ public class Formulario extends JFrame {
     setVisible(true);
   }
 
-  //Metodo para mostrar ventana de confirmacion al salir del formulario
+  //Ventanas de confirmacion
+
+  //Ventana de confirmacion al salir del formulario
   private void mostrarVentanaConfirmacionCancelar() {
     // Crear una nueva ventana para confirmar si el usuario quiere salir
     JDialog confirmacionDialog = new JDialog(this, "¿Seguro que desea salir?", true);
@@ -188,40 +196,9 @@ public class Formulario extends JFrame {
     confirmacionDialog.setVisible(true);
   }
 
-  //Metodo para mostrar ventana de confirmacion al enviar los datos del formulario
-  private void mostrarVentanaConfirmacionEnviar() {
-    // Crear una nueva ventana para mostrar que los datos se han añadido correctamente
-    JDialog confirmacionDialogAgregar = new JDialog(this, "Añadir datos", true);
-    confirmacionDialogAgregar.setSize(200, 150);
-    confirmacionDialogAgregar.setLayout(new FlowLayout());
-
-    //Crear etiqueta de informacion
-    JLabel confirmacionDatos = new JLabel("Datos correctamente añadidos");
-
-    // Añadir los botones al diálogo
-    confirmacionDialogAgregar.add(confirmacionDatos);
-
-    // Hacer visible la ventana de confirmación
-    confirmacionDialogAgregar.setLocationRelativeTo(this); // Centrar la ventana en la principal
-    confirmacionDialogAgregar.setVisible(true);
-  }
-
-  //Metodo para mostrar ventana de confirmacion al enviar los datos del formulario
-  private void mostrarVentanaErrorEnviar() {
-    // Crear una nueva ventana para mostrar que los datos se han añadido correctamente
-    JDialog errorDialogAgregar = new JDialog(this, "Error datos", true);
-    errorDialogAgregar.setSize(200, 150);
-    errorDialogAgregar.setLayout(new FlowLayout());
-
-    //Crear etiqueta de informacion
-    JLabel confirmacionDatos = new JLabel("Complete el formulario");
-
-    // Añadir los botones al diálogo
-    errorDialogAgregar.add(confirmacionDatos);
-
-    // Hacer visible la ventana de confirmación
-    errorDialogAgregar.setLocationRelativeTo(this); // Centrar la ventana en la principal
-    errorDialogAgregar.setVisible(true);
+  // Metodo para mostrar mensajes de confirmación y error
+  private void mostrarMensaje(String mensaje, String titulo) {
+    JOptionPane.showMessageDialog(this, mensaje, titulo, JOptionPane.INFORMATION_MESSAGE);
   }
 
   //Metodo main para que se pueda mostrar la ventana
