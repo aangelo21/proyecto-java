@@ -36,15 +36,15 @@ public class Formulario extends JFrame {
     JButton botonLimpiar = new JButton("Limpiar");
     JButton botonCancelar = new JButton("Cancelar");
     JButton botonCondiciones = new JButton("Condiciones");
-    JButton botonPrevisualizar = new JButton("Previsualizar");
+    JButton botonValidar = new JButton("Validar");
 
     // Set button colors
     botonEnviar.setBackground(new Color(102, 255, 102));
     botonLimpiar.setBackground(new Color(255, 255, 153));
     botonCancelar.setBackground(new Color(255, 51, 51));
-    botonCancelar.setForeground(Color.WHITE); // Add white text color for Cancelar button
+    botonCancelar.setForeground(Color.WHITE);
     botonCondiciones.setBackground(new Color(204, 153, 255));
-    botonPrevisualizar.setBackground(new Color(204, 204, 204));
+    botonValidar.setBackground(new Color(204, 204, 204));
 
     // Modify password field to hide input with dots
     textoPassword.setEchoChar('•'); // This will show dots instead of text
@@ -70,7 +70,7 @@ public class Formulario extends JFrame {
                       .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
                       .addComponent(botonCondiciones)
                       .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                      .addComponent(botonPrevisualizar))
+                      .addComponent(botonValidar))
                   .addGroup(layout.createSequentialGroup()
                       .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
                           .addComponent(etiquetaNombre)
@@ -124,7 +124,7 @@ public class Formulario extends JFrame {
                   .addComponent(botonLimpiar)
                   .addComponent(botonCancelar)
                   .addComponent(botonCondiciones)
-                  .addComponent(botonPrevisualizar))
+                  .addComponent(botonValidar))
               .addGap(8, 8, 8))
   );
 
@@ -164,15 +164,8 @@ public class Formulario extends JFrame {
             mostrarMensaje("Error al escribir los datos", "Error");
           }
         } else {
-          if (textoTelefono.getText().length() != 9) {
-            mostrarMensaje("El teléfono debe tener 9 dígitos", "Error");
-          }
-          if (textoPassword.getPassword().length < 9) {
-            mostrarMensaje("La contraseña debe tener al menos 9 caracteres", "Error");
-          }
-          if (!textoCorreo.getText().contains("@")) {
-            mostrarMensaje("El correo electrónico debe contener '@'", "Error");
-          }
+          mostrarMensaje("Datos no correctamente validados" +
+              "\nPara más información haga click en validar", "Error");
         }
       }
     });
@@ -210,7 +203,7 @@ public class Formulario extends JFrame {
     });
 
     //Evento para previsualizar datos
-    botonPrevisualizar.addActionListener(new ActionListener() {
+    botonValidar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
         StringBuilder errores = new StringBuilder();
@@ -248,7 +241,10 @@ public class Formulario extends JFrame {
 
     // Crear los botones "Aceptar" y "Cancelar"
     JButton aceptarButton = new JButton("Aceptar");
+    aceptarButton.setBackground(new Color(102, 255, 102));
     JButton cancelarButton = new JButton("Cancelar");
+    cancelarButton.setBackground(new Color(255, 51, 51));
+    cancelarButton.setForeground(Color.WHITE);
 
     // Acción al hacer clic en "Aceptar"
     aceptarButton.addActionListener(new ActionListener() {
