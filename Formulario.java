@@ -42,83 +42,91 @@ public class Formulario extends JFrame {
     botonEnviar.setBackground(new Color(102, 255, 102));
     botonLimpiar.setBackground(new Color(255, 255, 153));
     botonCancelar.setBackground(new Color(255, 51, 51));
+    botonCancelar.setForeground(Color.WHITE); // Add white text color for Cancelar button
     botonCondiciones.setBackground(new Color(204, 153, 255));
     botonPrevisualizar.setBackground(new Color(204, 204, 204));
+
+    // Modify password field to hide input with dots
+    textoPassword.setEchoChar('•'); // This will show dots instead of text
+    textoPassword.setText(""); // Clear default text
 
     // Layout
     Container contentPane = getContentPane();
     GroupLayout layout = new GroupLayout(contentPane);
     contentPane.setLayout(layout);
     
-    // Horizontal group
+           // Horizontal group
     layout.setHorizontalGroup(
-        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(etiquetaNombre)
-                    .addComponent(etiquetaApellidos)
-                    .addComponent(etiquetaCorreo)
-                    .addComponent(etiquetaPassword)
-                    .addComponent(etiquetaDNI)
-                    .addComponent(etiquetaTelefono)
-                    .addComponent(botonEnviar)
-                    .addComponent(botonPrevisualizar))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-                    .addComponent(textoNombre)
-                    .addComponent(textoApellidos)
-                    .addComponent(textoCorreo)
-                    .addComponent(textoPassword)
-                    .addComponent(textoDNI)
-                    .addComponent(textoTelefono)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(botonLimpiar)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonCancelar)
-                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(botonCondiciones)))
-                .addGap(27, 27, 27))
-    );
+      layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+              .addGap(27, 27, 27)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                  .addGroup(layout.createSequentialGroup()
+                      .addComponent(botonEnviar)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(botonLimpiar)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(botonCancelar)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(botonCondiciones)
+                      .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                      .addComponent(botonPrevisualizar))
+                  .addGroup(layout.createSequentialGroup()
+                      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                          .addComponent(etiquetaNombre)
+                          .addComponent(etiquetaApellidos)
+                          .addComponent(etiquetaCorreo)
+                          .addComponent(etiquetaPassword)
+                          .addComponent(etiquetaDNI)
+                          .addComponent(etiquetaTelefono))
+                      .addGap(20, 20, 20)
+                      .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                          .addComponent(textoNombre)
+                          .addComponent(textoApellidos)
+                          .addComponent(textoCorreo)
+                          .addComponent(textoPassword)
+                          .addComponent(textoDNI)
+                          .addComponent(textoTelefono))))
+              .addGap(27, 27, 27))
+  );
 
-    // Vertical group
-    layout.setVerticalGroup(
-        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(17, 17, 17)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaNombre)
-                    .addComponent(textoNombre))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaApellidos)
-                    .addComponent(textoApellidos))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaCorreo)
-                    .addComponent(textoCorreo))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaPassword)
-                    .addComponent(textoPassword))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaDNI)
-                    .addComponent(textoDNI))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(etiquetaTelefono)
-                    .addComponent(textoTelefono))
-                .addGap(28, 28, 28)
-                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                    .addComponent(botonEnviar)
-                    .addComponent(botonLimpiar)
-                    .addComponent(botonCancelar)
-                    .addComponent(botonCondiciones))
-                .addGap(11, 11, 11)
-                .addComponent(botonPrevisualizar)
-                .addGap(8, 8, 8))
-    );
+  // Vertical group
+  layout.setVerticalGroup(
+      layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+          .addGroup(layout.createSequentialGroup()
+              .addGap(17, 17, 17)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaNombre)
+                  .addComponent(textoNombre))
+              .addGap(18, 18, 18)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaApellidos)
+                  .addComponent(textoApellidos))
+              .addGap(18, 18, 18)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaCorreo)
+                  .addComponent(textoCorreo))
+              .addGap(18, 18, 18)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaPassword)
+                  .addComponent(textoPassword))
+              .addGap(18, 18, 18)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaDNI)
+                  .addComponent(textoDNI))
+              .addGap(18, 18, 18)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(etiquetaTelefono)
+                  .addComponent(textoTelefono))
+              .addGap(28, 28, 28)
+              .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                  .addComponent(botonEnviar)
+                  .addComponent(botonLimpiar)
+                  .addComponent(botonCancelar)
+                  .addComponent(botonCondiciones)
+                  .addComponent(botonPrevisualizar))
+              .addGap(8, 8, 8))
+  );
 
     pack();
     setVisible(true);
