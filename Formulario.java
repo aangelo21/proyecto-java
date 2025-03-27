@@ -17,7 +17,7 @@ public class Formulario extends JFrame {
   public void initComponents() {
 
     //Añadimos las caracteristicas bases de la ventana
-    setSize(500, 400);  // Reducimos la altura de 700 a 400
+    setSize(500, 400);
     setTitle("Formulario");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
@@ -51,6 +51,7 @@ public class Formulario extends JFrame {
     JButton botonEnviar = new JButton("Enviar"); //Boton enviar
     JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
     JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
+    JButton botonCondiciones = new JButton("Condiciones"); //Boton condiciones
 
     // Eventos
 
@@ -119,6 +120,17 @@ public class Formulario extends JFrame {
       }
     });
 
+    //Evento para mostrar condiciones
+    botonCondiciones.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        mostrarMensaje("Las condiciones son:" +
+            "\nLa contraseña debe tener al menos 9 caracteres" +
+            "\nEl numero de telefono debe ser de 9 digitos" +
+            "\nEl correo debe contener una @", "Condiciones del formulario");
+      }
+    });
+
     //Creamos el panel
     JPanel panel = new JPanel(new BorderLayout(10, 10));
 
@@ -140,21 +152,12 @@ public class Formulario extends JFrame {
     formPanel.add(etiquetaPassword);
     formPanel.add(textoPassword);
     formPanel.add(botonEnviar);
+    formPanel.add(botonLimpiar);
+    formPanel.add(botonCancelar);
+    formPanel.add(botonCondiciones);
 
-    // Panel para los botones
-    JPanel botonesPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 0));
-    botonesPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
 
-    // Añadimos los botones al panel de botones
-    botonesPanel.add(botonEnviar);
-    botonesPanel.add(botonLimpiar);
-    botonesPanel.add(botonCancelar);
-
-    // Añadimos los paneles al panel principal
-    panel.add(formPanel, BorderLayout.CENTER);
-    panel.add(botonesPanel, BorderLayout.SOUTH);
-
-    setContentPane(panel);
+    setContentPane(formPanel);
     setVisible(true);
   }
 
