@@ -15,45 +15,114 @@ public class Formulario extends JFrame {
 
   //Esta es la ventana que se va a mostrar
   public void initComponents() {
-
-    //Añadimos las caracteristicas bases de la ventana
-    setSize(500, 400);
-    setTitle("Formulario");
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setTitle("Formulario");
 
-    //Añadimos los componentes
-
-    //Componentes de nombre
+    // Components creation
     JLabel etiquetaNombre = new JLabel("Introduce tu nombre");
     JTextField textoNombre = new JTextField(15);
-
-    //Componentes de apellidos
     JLabel etiquetaApellidos = new JLabel("Introduce tus apellidos");
     JTextField textoApellidos = new JTextField(15);
-
-    //Componentes de DNI
     JLabel etiquetaDNI = new JLabel("Introduce tu DNI");
     JTextField textoDNI = new JTextField(15);
-
-    //Componentes de telefono
     JLabel etiquetaTelefono = new JLabel("Introduce tu telefono");
     JTextField textoTelefono = new JTextField(15);
-
-    //Componentes de correo electronico
     JLabel etiquetaCorreo = new JLabel("Introduce tu correo electronico");
     JTextField textoCorreo = new JTextField(15);
-
-    //Componentes de contraseña
     JLabel etiquetaPassword = new JLabel("Introduce tu contraseña");
-    JTextField textoPassword = new JTextField(15);
+    JPasswordField textoPassword = new JPasswordField(15);
 
-    //Botones
-    JButton botonEnviar = new JButton("Enviar"); //Boton enviar
-    JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
-    JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
-    JButton botonCondiciones = new JButton("Condiciones"); //Boton condiciones
-    JButton botonPrevisualizar = new JButton("Previsualizar"); //Boton previsualizar
+    JButton botonEnviar = new JButton("Enviar");
+    JButton botonLimpiar = new JButton("Limpiar");
+    JButton botonCancelar = new JButton("Cancelar");
+    JButton botonCondiciones = new JButton("Condiciones");
+    JButton botonPrevisualizar = new JButton("Previsualizar");
 
+    // Set button colors
+    botonEnviar.setBackground(new Color(102, 255, 102));
+    botonLimpiar.setBackground(new Color(255, 255, 153));
+    botonCancelar.setBackground(new Color(255, 51, 51));
+    botonCondiciones.setBackground(new Color(204, 153, 255));
+    botonPrevisualizar.setBackground(new Color(204, 204, 204));
+
+    // Layout
+    Container contentPane = getContentPane();
+    GroupLayout layout = new GroupLayout(contentPane);
+    contentPane.setLayout(layout);
+    
+    // Horizontal group
+    layout.setHorizontalGroup(
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(etiquetaNombre)
+                    .addComponent(etiquetaApellidos)
+                    .addComponent(etiquetaCorreo)
+                    .addComponent(etiquetaPassword)
+                    .addComponent(etiquetaDNI)
+                    .addComponent(etiquetaTelefono)
+                    .addComponent(botonEnviar)
+                    .addComponent(botonPrevisualizar))
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+                    .addComponent(textoNombre)
+                    .addComponent(textoApellidos)
+                    .addComponent(textoCorreo)
+                    .addComponent(textoPassword)
+                    .addComponent(textoDNI)
+                    .addComponent(textoTelefono)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botonLimpiar)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonCancelar)
+                        .addPreferredGap(LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(botonCondiciones)))
+                .addGap(27, 27, 27))
+    );
+
+    // Vertical group
+    layout.setVerticalGroup(
+        layout.createParallelGroup(GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaNombre)
+                    .addComponent(textoNombre))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaApellidos)
+                    .addComponent(textoApellidos))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaCorreo)
+                    .addComponent(textoCorreo))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaPassword)
+                    .addComponent(textoPassword))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaDNI)
+                    .addComponent(textoDNI))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(etiquetaTelefono)
+                    .addComponent(textoTelefono))
+                .addGap(28, 28, 28)
+                .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
+                    .addComponent(botonEnviar)
+                    .addComponent(botonLimpiar)
+                    .addComponent(botonCancelar)
+                    .addComponent(botonCondiciones))
+                .addGap(11, 11, 11)
+                .addComponent(botonPrevisualizar)
+                .addGap(8, 8, 8))
+    );
+
+    pack();
+    setVisible(true);
+    
     // Eventos
 
     //Evento para guardar datos
@@ -73,7 +142,7 @@ public class Formulario extends JFrame {
             escribir.newLine();
             escribir.write(textoCorreo.getText());
             escribir.newLine();
-            escribir.write(textoPassword.getText());
+            escribir.write(new String(textoPassword.getPassword()));
             escribir.newLine();
             escribir.close();
             textoNombre.setText("");
@@ -90,7 +159,7 @@ public class Formulario extends JFrame {
           if (textoTelefono.getText().length() != 9) {
             mostrarMensaje("El teléfono debe tener 9 dígitos", "Error");
           }
-          if (textoPassword.getText().length() < 9) {
+          if (textoPassword.getPassword().length < 9) {
             mostrarMensaje("La contraseña debe tener al menos 9 caracteres", "Error");
           }
           if (!textoCorreo.getText().contains("@")) {
@@ -142,7 +211,7 @@ public class Formulario extends JFrame {
         if (textoTelefono.getText().length() != 9) {
           errores.append("El teléfono debe tener 9 dígitos\n");
         }
-        if (textoPassword.getText().length() < 9) {
+        if (textoPassword.getPassword().length < 9) {
           errores.append("La contraseña debe tener al menos 9 caracteres\n");
         }
         if (!textoCorreo.getText().contains("@")) {
@@ -158,35 +227,6 @@ public class Formulario extends JFrame {
         }
       }
     });
-
-    //Creamos el panel
-    JPanel panel = new JPanel(new BorderLayout(10, 10));
-
-    // Panel para los campos del formulario
-    JPanel formPanel = new JPanel(new GridLayout(6, 2, 5, 5));
-    formPanel.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // Reducimos el padding vertical
-
-    // Añadimos los componentes al panel del formulario
-    formPanel.add(etiquetaNombre);
-    formPanel.add(textoNombre);
-    formPanel.add(etiquetaApellidos);
-    formPanel.add(textoApellidos);
-    formPanel.add(etiquetaDNI);
-    formPanel.add(textoDNI);
-    formPanel.add(etiquetaTelefono);
-    formPanel.add(textoTelefono);
-    formPanel.add(etiquetaCorreo);
-    formPanel.add(textoCorreo);
-    formPanel.add(etiquetaPassword);
-    formPanel.add(textoPassword);
-    formPanel.add(botonEnviar);
-    formPanel.add(botonLimpiar);
-    formPanel.add(botonCancelar);
-    formPanel.add(botonCondiciones);
-    formPanel.add(botonPrevisualizar);
-
-    setContentPane(formPanel);
-    setVisible(true);
   }
 
   //Ventanas de confirmacion
