@@ -52,6 +52,7 @@ public class Formulario extends JFrame {
     JButton botonLimpiar = new JButton("Limpiar"); //Boton limpiar
     JButton botonCancelar = new JButton("Cancelar"); //Boton cancelar
     JButton botonCondiciones = new JButton("Condiciones"); //Boton condiciones
+    JButton botonPrevisualizar = new JButton("Previsualizar"); //Boton previsualizar
 
     // Eventos
 
@@ -131,6 +132,33 @@ public class Formulario extends JFrame {
       }
     });
 
+    //Evento para previsualizar datos
+    botonPrevisualizar.addActionListener(new ActionListener() {
+      @Override
+      public void actionPerformed(ActionEvent e) {
+        StringBuilder errores = new StringBuilder();
+        
+        // Validar todos los campos independientemente
+        if (textoTelefono.getText().length() != 9) {
+          errores.append("El teléfono debe tener 9 dígitos\n");
+        }
+        if (textoPassword.getText().length() < 9) {
+          errores.append("La contraseña debe tener al menos 9 caracteres\n");
+        }
+        if (!textoCorreo.getText().contains("@")) {
+          errores.append("El correo electrónico debe contener '@'\n");
+        }
+
+        // Mostrar mensaje según si hay errores o no
+        if (errores.length() > 0) {
+          mostrarMensaje("Los errores son:\n" + errores.toString(), "Validación");
+        } else {
+         
+          mostrarMensaje("No hay errores", "Previsualización");
+        }
+      }
+    });
+
     //Creamos el panel
     JPanel panel = new JPanel(new BorderLayout(10, 10));
 
@@ -155,7 +183,7 @@ public class Formulario extends JFrame {
     formPanel.add(botonLimpiar);
     formPanel.add(botonCancelar);
     formPanel.add(botonCondiciones);
-
+    formPanel.add(botonPrevisualizar);
 
     setContentPane(formPanel);
     setVisible(true);
