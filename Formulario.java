@@ -202,7 +202,7 @@ public class Formulario extends JFrame {
       }
     });
 
-    //Evento para previsualizar datos
+    //Evento para valiar datos
     botonValidar.addActionListener(new ActionListener() {
       @Override
       public void actionPerformed(ActionEvent e) {
