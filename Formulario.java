@@ -18,7 +18,7 @@ public class Formulario extends JFrame {
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setTitle("Formulario");
 
-    // Components creation
+    // Creamos los componentes de la ventana
     JLabel etiquetaNombre = new JLabel("Introduce tu nombre");
     JTextField textoNombre = new JTextField(15);
     JLabel etiquetaApellidos = new JLabel("Introduce tus apellidos");
@@ -38,7 +38,7 @@ public class Formulario extends JFrame {
     JButton botonCondiciones = new JButton("Condiciones");
     JButton botonValidar = new JButton("Validar");
 
-    // Set button colors
+    // Modificamos los colores de los botones
     botonEnviar.setBackground(new Color(102, 255, 102));
     botonLimpiar.setBackground(new Color(255, 255, 153));
     botonCancelar.setBackground(new Color(255, 51, 51));
@@ -46,16 +46,16 @@ public class Formulario extends JFrame {
     botonCondiciones.setBackground(new Color(204, 153, 255));
     botonValidar.setBackground(new Color(204, 204, 204));
 
-    // Modify password field to hide input with dots
-    textoPassword.setEchoChar('•'); // This will show dots instead of text
-    textoPassword.setText(""); // Clear default text
+    // Modicamos la contraseña para que se oculte al escribir en este campo de texto
+    textoPassword.setEchoChar('•'); 
+    textoPassword.setText(""); 
 
-    // Layout
+    // Ahora hacemos el Layout
     Container contentPane = getContentPane();
     GroupLayout layout = new GroupLayout(contentPane);
     contentPane.setLayout(layout);
     
-           // Horizontal group
+    // Hacemos el horizontal group
     layout.setHorizontalGroup(
       layout.createParallelGroup(GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
@@ -90,7 +90,7 @@ public class Formulario extends JFrame {
               .addGap(27, 27, 27))
   );
 
-  // Vertical group
+  // Ahora hacemos el vertical group
   layout.setVerticalGroup(
       layout.createParallelGroup(GroupLayout.Alignment.LEADING)
           .addGroup(layout.createSequentialGroup()
@@ -131,7 +131,7 @@ public class Formulario extends JFrame {
     pack();
     setVisible(true);
     
-    // Eventos
+    // Vamos a empezar con los eventos
 
     //Evento para guardar datos
     botonEnviar.addActionListener(new ActionListener() {
@@ -223,7 +223,7 @@ public class Formulario extends JFrame {
         if (errores.length() > 0) {
           mostrarMensaje("Los errores son:\n" + errores.toString(), "Validación");
         } else {
-         
+        
           mostrarMensaje("No hay errores", "Previsualización");
         }
       }
